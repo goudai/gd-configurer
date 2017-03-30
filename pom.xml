@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>io.goudai</groupId>
+	<artifactId>gd-configurer</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<modules>
+		<module>gd-configurer-mysql</module>
+		<module>gd-configurer-gateway</module>
+		<module>gd-configurer-core</module>
+		<module>gd-configurer-spring</module>
+	</modules>
+
+	<name>Maven</name>
+	<url>http://maven.apache.org/</url>
+	<inceptionYear>2001</inceptionYear>
+
+	<distributionManagement>
+		<site>
+			<id>website</id>
+			<url>scp://webhost.company.com/www/website</url>
+		</site>
+	</distributionManagement>
+
+	<properties>
+		<jackson.version>2.9.0.pr2</jackson.version>
+		<spring.version>4.3.7.RELEASE</spring.version>
+		<mysql.version>5.1.41</mysql.version>
+		<slf4j.version>1.7.25</slf4j.version>
+		<druid.version>1.0.29</druid.version>
+		<lombok.version>1.16.16</lombok.version>
+		<undertow.version>1.4.11.Final</undertow.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>io.goudai</groupId>
+				<artifactId>gd-configurer-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.goudai</groupId>
+				<artifactId>gd-configurer-gateway</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.goudai</groupId>
+				<artifactId>gd-configurer-mysql</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.goudai</groupId>
+				<artifactId>gd-configurer-spring</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-core</artifactId>
+				<version>${undertow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-servlet</artifactId>
+				<version>${undertow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-websockets-jsr</artifactId>
+				<version>${undertow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.undertow</groupId>
+				<artifactId>undertow-websockets-jsr</artifactId>
+				<version>${version.io.undertow}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>log4j-over-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jul-to-slf4j</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<!--<dependency>-->
+				<!--<groupId>org.jboss.logging</groupId>-->
+				<!--<artifactId>jboss-logging</artifactId>-->
+				<!--<version>3.1.4.GA</version>-->
+			<!--</dependency>-->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<source>1.8</source>
+					<target>1.8</target>
+					<compilerArgs>
+						<compilerArg>-parameters</compilerArg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
