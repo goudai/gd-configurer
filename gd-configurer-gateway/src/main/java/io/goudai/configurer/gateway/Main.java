@@ -44,7 +44,7 @@ public class Main {
 						servlet(FileResources.class)
 								.setMultipartConfig(new MultipartConfigElement("/tmp"))
 								.setLoadOnStartup(1)
-								.addMapping("/file")
+								.addMapping("/files")
 				).addFilters(filter("UTF8CharacterFilter", UTF8CharacterFilter.class))
 				.addFilterUrlMapping("UTF8CharacterFilter", "/*", DispatcherType.REQUEST);
 

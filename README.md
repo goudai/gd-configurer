@@ -63,10 +63,22 @@ public class R {
 | put | /apps       |    app_name,new_app_name | 修改一个应用的名称，将级联修改配置 |
 
 
-
-
-
 #### configs 接口
+
+| 方法        | api           | requestBody  | 描述
+| ------------- |:-------------:| -----:| ---------:|
+| get      | /configs/${app_name}  | 无 | 返回指定应用的配置信息 |
+| post      | /configs       |   app_name,key,value | 为应用添加一个配置 |
+| delete | /configs       |    app_name,key | 删除一个应用的配置 |
+| put | /configs       |    app_name,key,value | 修改一个应用的配置 |
+
+#### file 接口 
+* 这个接口处理 properties 
+
+| 方法        | api           | requestBody  | 描述
+| ------------- |:-------------:| -----:| ---------:|
+| post      | /files       |   app_name,file | 通过文件上传的形式添加配置 |
+
 
 ##TODO
 	鉴权
