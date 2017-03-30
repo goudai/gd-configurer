@@ -1,17 +1,17 @@
 #狗带配置中心
 
 ##主要功能
-	以简单为核心思想
-	主要是使用mysql存储 
-	接口全部采用标准restful 接口
-	支持配置文件上传解析
-	使用内嵌undertow servlet容器
+* 以简单为核心思想
+* 主要是使用mysql存储 
+* 接口全部采用标准restful 接口
+* 支持配置文件上传解析
+* 使用内嵌undertow servlet容器
 	
 ##实现技术
 
-	数据库连接池 druid
-	json解析 jackson
-	web容器 undertow
+* 数据库连接池 druid
+* json解析 jackson
+* web容器 undertow
 	
 ##安装到本地
 
@@ -26,7 +26,8 @@
 
 ### 返回对象定义
 
-``
+````
+
 public class R {
 	private int code;
 	private String msg; //异常信息描述
@@ -45,7 +46,8 @@ public class R {
 		String F = "FAILED";
 	}
 }
-``
+
+````
 
 ####apps 接口 
 
