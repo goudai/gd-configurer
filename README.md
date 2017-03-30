@@ -22,7 +22,8 @@
 ## 启动
 	修改 io.goudai.configurer.gateway.Main 中的Datasource数据库url等
 	
-##restful api 一览
+## restful api 一览
+
 
 ### 返回对象定义
 
@@ -49,7 +50,8 @@ public class R {
 
 ````
 
-####apps 接口 
+
+#### apps 接口 
 
 * 注意 request body 一般使用body的形式 不推荐使用url拼接 
 
