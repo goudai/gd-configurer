@@ -55,19 +55,14 @@ public class R {
 
 * 注意 request body 一般使用body的形式 不推荐使用url拼接 
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| 方法        | api           | requestBody  | 描述
+| ------------- |:-------------:| -----:| ---------:|
+| get      | /apps  | 无 | 返回所有的应用列表 |
+| post      | /apps       |   app_name | 新增一个应用 |
+| delete | /apps       |    app_name | 删除一个应用，注意这里会级联删除配置 |
+| put | /apps       |    app_name,new_app_name | 修改一个应用的名称，将级联修改配置 |
 
 
-方法    | api     | request body    | 描述
---------|-------------|--------------|
- get    | /apps    |   无   | 返回所有的应用列表
- post    | /apps    |  app_name    |新增一个应用
- delete    | /apps    | app_name    | 删除一个应用，注意这里会级联删除配置
- put    | /apps    | app_name,new_app_name | 修改一个应用的名称，将级联修改配置
 
 
 
