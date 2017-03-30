@@ -16,15 +16,17 @@ public class DatasourceKit {
 
 	private static DataSource dataSource;
 	static DruidDataSource druidDataSource;
-	{
+
+	static {
 		try {
 			Class.forName(com.mysql.jdbc.Driver.class.getName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-//
-	public static final void init(String url,String username,String password){
+
+	//
+	public static final void init(String url, String username, String password) {
 		//"jdbc:mysql://192.168.10.240:3306/gd-configurer?useUnicode=true&characterEncoding=utf8"
 		druidDataSource = new DruidDataSource();
 		druidDataSource.setUrl(url);
