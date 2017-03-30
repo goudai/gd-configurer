@@ -1,4 +1,4 @@
-#狗带配置中心
+# 狗带配置中心
 
 ##主要功能
 * 以简单为核心思想
@@ -7,13 +7,13 @@
 * 支持配置文件上传解析
 * 使用内嵌undertow servlet容器
 	
-##实现技术
+## 实现技术
 
 * 数据库连接池 druid
 * json解析 jackson
 * web容器 undertow
 	
-##安装到本地
+## 安装到本地
 
 	git https://github.com/goudai/gd-configurer.git
 	cd gd-configurer
