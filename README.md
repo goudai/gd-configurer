@@ -1,22 +1,31 @@
 #狗带配置中心
+
 ##主要功能
 	以简单为核心思想
 	主要是使用mysql存储 
 	接口全部采用标准restful 接口
 	支持配置文件上传解析
 	使用内嵌undertow servlet容器
+	
 ##实现技术
+
 	数据库连接池 druid
 	json解析 jackson
 	web容器 undertow
+	
 ##安装到本地
+
 	git https://github.com/goudai/gd-configurer.git
 	cd gd-configurer
 	mvn clean install
+	
 ## 启动
 	修改 io.goudai.configurer.gateway.Main 中的Datasource数据库url等
+	
 ##restful api 一览
+
 ### 返回对象定义
+
 ``
 public class R {
 	private int code;
@@ -39,6 +48,7 @@ public class R {
 ``
 
 ####apps 接口 
+
 * 注意 request body 一般使用body的形式 不推荐使用url拼接 
 
 
