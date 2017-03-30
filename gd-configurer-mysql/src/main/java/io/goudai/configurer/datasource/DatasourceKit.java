@@ -42,6 +42,11 @@ public class DatasourceKit {
 			throw new RuntimeException("init druidDataSource fauld", e);
 		}
 		dataSource = druidDataSource;
+
+		init();
+	}
+
+	private static void init (){
 		{
 			statement(sts -> {
 				try {
@@ -61,13 +66,13 @@ public class DatasourceKit {
 				}
 			});
 		}
-
 	}
 
 
 
 	public static final void init(DataSource dataSource) {
 		DatasourceKit.dataSource = dataSource;
+		init();
 	}
 
 	public static final Connection getConnection() {
