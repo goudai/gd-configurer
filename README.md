@@ -21,13 +21,30 @@
 	
 ## 启动
 	修改 io.goudai.configurer.gateway.Main 中的Datasource数据库url等
+
+## spring 集成
+````xml
+  <dependency>
+    <groupId>io.goudai</groupId>
+    <artifactId>gd-configurer-spring</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </dependency>
+  
+   <bean class="io.goudai.spring.GoudaiConfigurer">
+	  <property name="appName" value="你的项目名称"/>
+	  <property name="server" value="http://goudai服务器地址"/>
+	  <property name="port" value="服务器端口"/>
+   </bean>
+
+
+````
 	
 ## restful api 一览
 
 
 ### 返回对象定义
 
-````
+````java
 
 public class R {
 	private int code;
@@ -80,7 +97,8 @@ public class R {
 | post      | /files       |   app_name,file | 通过文件上传的形式添加配置 |
 
 
+
 ##TODO
-	鉴权
-     web 页面控制台
+*鉴权
+*web 页面控制台
 
