@@ -42,27 +42,29 @@ public class DatasourceKit {
 			throw new RuntimeException("init druidDataSource fauld", e);
 		}
 		dataSource = druidDataSource;
+		{
+			statement(sts -> {
+				try {
+					sts.executeUpdate("CREATE TABLE IF NOT EXISTS gd_configurer(id int auto_increment not null primary key,gd_app varchar(20) not null,gd_key varchar(255)  not null, gd_value varchar(255),UNIQUE KEY `app_key` (`gd_app`,`gd_key`))");
+				} catch (SQLException e) {
+					log.error(e.getMessage(), e);
+				}
+			});
+		}
+
+		{
+			statement(statement -> {
+				try {
+					statement.executeUpdate("CREATE TABLE IF NOT EXISTS gd_application(id int auto_increment PRIMARY key,gd_name varchar(255) not null )");
+				} catch (SQLException e) {
+					log.error(e.getMessage(), e);
+				}
+			});
+		}
+
 	}
 
-	{
-		statement(sts -> {
-			try {
-				sts.executeUpdate("CREATE TABLE IF NOT EXISTS gd_configurer(id int auto_increment not null primary key,gd_app varchar(20) not null,gd_key varchar(255)  not null, gd_value varchar(255),UNIQUE KEY `app_key` (`gd_app`,`gd_key`))");
-			} catch (SQLException e) {
-				log.error(e.getMessage(), e);
-			}
-		});
-	}
 
-	{
-		statement(statement -> {
-			try {
-				statement.executeUpdate("CREATE TABLE IF NOT EXISTS gd_application(id int auto_increment PRIMARY key,gd_name varchar(255) not null )");
-			} catch (SQLException e) {
-				log.error(e.getMessage(), e);
-			}
-		});
-	}
 
 	public static final void init(DataSource dataSource) {
 		DatasourceKit.dataSource = dataSource;
