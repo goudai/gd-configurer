@@ -20,7 +20,7 @@
 	mvn clean install
 	
 ## 启动
-	修改 io.goudai.configurer.gateway.Main 中的Datasource数据库url等
+	修改 io.goudai.configurer.gateway.Main 中的Datasource数据库url，账户，密码，安全码等
 
 ## spring 集成
 ````xml
@@ -67,9 +67,10 @@ public class R {
 
 ````
 
+
 #### 登录注册接口
  
-* 这个接口处理 properties 
+* 这个接口处理 登录注册(采用header头验证 Authorization:token) 
 
 | 方法        | api           | requestBody  | 描述
 | ------------- |:-------------:| -----:| ---------:|
