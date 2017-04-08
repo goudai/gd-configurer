@@ -1,10 +1,12 @@
 package io.goudai.configurer.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -17,16 +19,16 @@ public class DatasourceKit {
 	private static DataSource dataSource;
 	static DruidDataSource druidDataSource;
 
-	static {
-		try {
-			Class.forName(com.mysql.jdbc.Driver.class.getName());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+//	static {
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//		} catch (ClassNotFoundException e) {
+//			log.error(e.getMessage(),e);
+//		}
+//	}
 
 	//
-	public static final void init(String url, String username, String password) {
+	public static final void init(@NonNull String url, @NonNull String username, String password, @NonNull String securityCode) {
 		//"jdbc:mysql://192.168.10.240:3306/gd-configurer?useUnicode=true&characterEncoding=utf8"
 		druidDataSource = new DruidDataSource();
 		druidDataSource.setUrl(url);
@@ -44,30 +46,32 @@ public class DatasourceKit {
 		dataSource = druidDataSource;
 
 		init();
+		statement(statement -> {
+			try (ResultSet resultSet = statement.executeQuery("SELECT * FROM gd_security_code")) {
+				if (resultSet.next()) {
+					statement.executeUpdate("UPDATE gd_security_code SET gd_security_code='" + securityCode+"'");
+				} else {
+					if(securityCode == null || "".equals(securityCode)){
+						throw new RuntimeException("安全码必填");
+					}
+					statement.executeUpdate("INSERT INTO gd_security_code(gd_security_code) VALUES ('" + securityCode + "')");
+				}
+			}
+		});
 	}
 
-	private static void init (){
-		{
-			statement(sts -> {
-				try {
-					sts.executeUpdate("CREATE TABLE IF NOT EXISTS gd_configurer(id int auto_increment not null primary key,gd_app varchar(20) not null,gd_key varchar(255)  not null, gd_value varchar(255),UNIQUE KEY `app_key` (`gd_app`,`gd_key`))");
-				} catch (SQLException e) {
-					log.error(e.getMessage(), e);
-				}
-			});
-		}
-
+	private static void init() {
 		{
 			statement(statement -> {
-				try {
-					statement.executeUpdate("CREATE TABLE IF NOT EXISTS gd_application(id int auto_increment PRIMARY key,gd_name varchar(255) not null )");
-				} catch (SQLException e) {
-					log.error(e.getMessage(), e);
-				}
+				statement.executeUpdate("CREATE TABLE IF NOT EXISTS gd_configurer(id int auto_increment not null primary key,gd_app varchar(20) not null,gd_key varchar(255)  not null, gd_value varchar(255),UNIQUE KEY `app_key` (`gd_app`,`gd_key`))");
+				statement.executeUpdate("CREATE TABLE IF NOT EXISTS gd_application(id int auto_increment PRIMARY key,gd_name varchar(255) not null )");
+				statement.executeUpdate("CREATE TABLE IF NOT EXISTS gd_security_code(id int auto_increment PRIMARY key,gd_security_code varchar(255) not null )");
+				statement.executeUpdate("CREATE TABLE IF NOT EXISTS gd_user(id int auto_increment PRIMARY key,gd_username varchar(255) not null,gd_password VARCHAR(60) not null)");
+				statement.executeUpdate("CREATE TABLE IF NOT EXISTS gd_token(id int auto_increment PRIMARY key,gd_user_id int not NULL ,gd_token varchar(255) not null,created_time DATETIME)");
 			});
 		}
-	}
 
+	}
 
 
 	public static final void init(DataSource dataSource) {
@@ -87,7 +91,7 @@ public class DatasourceKit {
 	public static final void connection(ConnectionCallback callback) {
 		try (Connection connection = DatasourceKit.getConnection();
 		) {
-			callback.callback(connection);
+			callback.apply(connection);
 		} catch (SQLException e) {
 			log.error(e.getMessage(), e);
 		}
@@ -97,7 +101,7 @@ public class DatasourceKit {
 		try (Connection connection = DatasourceKit.getConnection();
 		     Statement statement = connection.createStatement();
 		) {
-			callback.callback(statement);
+			callback.apply(statement);
 		} catch (SQLException e) {
 			log.error(e.getMessage(), e);
 		}
@@ -106,12 +110,12 @@ public class DatasourceKit {
 
 	@FunctionalInterface
 	public interface StatementCallback {
-		void callback(Statement connection) throws SQLException;
+		void apply(Statement connection) throws SQLException;
 	}
 
 	@FunctionalInterface
 	public interface ConnectionCallback {
-		void callback(Connection connection);
+		void apply(Connection connection) throws SQLException;
 	}
 
 

@@ -1,4 +1,4 @@
-package io.goudai.configurer.gateway.resources;
+package io.goudai.configurer.gateway.resources.model;
 
 import lombok.*;
 

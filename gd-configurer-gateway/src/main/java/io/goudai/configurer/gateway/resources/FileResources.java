@@ -3,6 +3,7 @@ package io.goudai.configurer.gateway.resources;
 import io.goudai.configurer.Entry;
 import io.goudai.configurer.GoudaiFactory;
 import io.goudai.configurer.gateway.JacksonKit;
+import io.goudai.configurer.gateway.resources.model.R;
 import lombok.NonNull;
 
 import javax.servlet.ServletException;

@@ -27,7 +27,7 @@
 	<properties>
 		<jackson.version>2.9.0.pr2</jackson.version>
 		<spring.version>4.3.7.RELEASE</spring.version>
-		<mysql.version>5.1.41</mysql.version>
+		<mysql.version>5.1.38</mysql.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<druid.version>1.0.29</druid.version>
 		<lombok.version>1.16.16</lombok.version>
@@ -111,9 +111,9 @@
 				<version>${slf4j.version}</version>
 			</dependency>
 			<!--<dependency>-->
-				<!--<groupId>org.jboss.logging</groupId>-->
-				<!--<artifactId>jboss-logging</artifactId>-->
-				<!--<version>3.1.4.GA</version>-->
+			<!--<groupId>org.jboss.logging</groupId>-->
+			<!--<artifactId>jboss-logging</artifactId>-->
+			<!--<version>3.1.4.GA</version>-->
 			<!--</dependency>-->
 			<dependency>
 				<groupId>mysql</groupId>
@@ -136,9 +136,6 @@
 				<artifactId>jackson-databind</artifactId>
 				<version>${jackson.version}</version>
 			</dependency>
-
-
-
 		</dependencies>
 	</dependencyManagement>
 
@@ -159,4 +156,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

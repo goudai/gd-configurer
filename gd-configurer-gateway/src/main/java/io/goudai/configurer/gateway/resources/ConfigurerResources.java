@@ -4,6 +4,7 @@ import io.goudai.configurer.Configurer;
 import io.goudai.configurer.Entry;
 import io.goudai.configurer.GoudaiFactory;
 import io.goudai.configurer.gateway.JacksonKit;
+import io.goudai.configurer.gateway.resources.model.R;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

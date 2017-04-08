@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-	<property file="${user.home}/sx.properties"/>
+	<!--<property file="${user.home}/sx.properties"/>-->
 	<!-- 控制台输出 -->
 	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
 		<!-- 日志输出编码 -->
@@ -24,7 +24,7 @@
 		</encoder>
 	</appender>
 
-	<logger name="com.sx" level="${log.packageLevel}"/>
+	<logger name="com.goudai" level="INFO"/>
 
 	<!-- 日志输出级别 -->
 	<root level="debug">
