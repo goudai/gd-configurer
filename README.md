@@ -67,6 +67,17 @@ public class R {
 
 ````
 
+#### 登录注册接口
+ 
+* 这个接口处理 properties 
+
+| 方法        | api           | requestBody  | 描述
+| ------------- |:-------------:| -----:| ---------:|
+| get      | /       |   no body | 返回注册登录提示 |
+| post      | /       |   username,password | 登录接口 |
+| post      | /sessions       |   username,password,security_code | 注册接口,安全码是为了验证是系统用户 |
+
+
 
 #### apps 接口 
 
